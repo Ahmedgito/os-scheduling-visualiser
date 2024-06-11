@@ -1,0 +1,234 @@
+body {
+  font-family: "Nunito", sans-serif;
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  background: #fff;
+}
+
+.output-section {
+  flex: 1;
+  background: #fff;
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1),
+    0px 2px 32px rgba(15, 91, 206, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.input-section {
+  padding: 1rem 2rem 2rem 2rem;
+  background: #ffffff;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1),
+    0px 2px 32px rgba(15, 91, 206, 0.1);
+  border-radius: 15px;
+  min-width: 230px;
+  max-width: 335px;
+}
+
+.output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.algo-value {
+  background-color: #e8fff7;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 8px 10px;
+}
+
+.gantt-chart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  color: #6d7187;
+}
+
+.job-container {
+  display: flex;
+}
+
+.job {
+  width: 40px;
+  height: 35px;
+  border: 1px solid #8da6ff;
+  background-color: #edf4ff;
+  color: #424242;
+}
+
+.time-container {
+  display: flex;
+}
+
+.time {
+  width: 40px;
+  height: 20px;
+  border: 1px solid #fff;
+  color: #444e5c;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.styled-table tr {
+  height: 40px;
+}
+
+.styled-table th,
+.styled-table td {
+  text-align: left;
+  padding: 15px;
+  border: 1px solid #e1e1e1;
+}
+
+.header-cell {
+  font-size: 1rem;
+  font-weight: 500;
+  height: 40px;
+  white-space: nowrap;
+  color: #6d7187;
+  background-color: #f9f9fb;
+}
+
+.form-section {
+  margin: 20px 0px;
+}
+
+label {
+  display: inline-block;
+  font-size: 14px;
+  padding-bottom: 8px;
+}
+
+input {
+  width: calc(100% - 26px);
+  border: 1px solid #c5c7d0;
+  border-radius: 5px;
+  padding: 11px 12px;
+  transition: all 0.2s ease-out;
+  font-size: 14px;
+}
+
+input:hover {
+  background-color: #fafafa;
+  border-color: rgb(179, 179, 179);
+}
+
+input:focus {
+  border-color: #2684ff;
+  background-color: #fff;
+  outline: none;
+}
+
+button {
+  background-color: #2684ff;
+  border-radius: 5px;
+  color: #fff;
+  width: 5.625rem;
+  height: 2.5rem;
+  transition: background-color 0.2s ease-out;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #005bff;
+}
+
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms ease-out;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+#algo-select {
+  width: 100%;
+  padding: 11px 12px;
+  font-size: 14px;
+  border: 1px solid #c5c7d0;
+  border-radius: 5px;
+}
+
+#algo-select:focus {
+  outline: none;
+  border-color: #2684ff;
+  box-shadow: 0 0 0 1px #74b0ff;
+}
+
+#algo-select option:checked {
+  background-color: #2684ff;
+  color: #fff;
+}
+
+/* Style the select dropdown arrow */
+/* #algo-select::-ms-expand {
+  display: none;
+} */
+
+/* Style the select options */
+/* #algo-select option {
+  font-size: 14px;
+  background-color: #fff;
+  color: #000;
+} */
+
+/* Style the select dropdown */
+/* #algo-select-dropdown {
+  border: 1px solid #c5c7d0;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  max-height: 150px;
+  overflow-y: auto;
+} */
+
+/* Style the select option on hover */
+/* #algo-select option:hover {
+  background-color: #da2b2b;
+} */
+
+/* Style the select option when selected */
+
+/* @keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+} */
+
+/* .table-wrapper {
+  overflow: auto;
+  max-width: 100%;
+  margin: 0px auto 20px auto;
+  background: linear-gradient(to right, white 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(to right, rgba(255, 255, 255, 0), white 70%) 0 100%,
+    radial-gradient(
+      farthest-side at 0% 50%,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    ),
+    radial-gradient(
+        farthest-side at 100% 50%,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      )
+      0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-position: 0 0, 100%, 0 0, 100%;
+  background-attachment: local, local, scroll, scroll;
+} */

@@ -1,1 +1,1 @@
-class outputController {}
+class OutputController {}

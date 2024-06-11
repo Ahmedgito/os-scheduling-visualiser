@@ -1,1 +1,4 @@
-console.log("Hello World!");
+import { GraphController } from "./controller/outputController/graphController";
+
+const graphController = new GraphController();
+graphController.renderChart();

@@ -1,1 +1,1 @@
-class inputController {}
+class InputController {}

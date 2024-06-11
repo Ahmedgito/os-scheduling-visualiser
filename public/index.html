@@ -1,8 +1,111 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>CPU Scheduling Simulator</title>
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <script src="static/bundle/main.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="input-section">
+        <h1>Input</h1>
+        <form class="form">
+          <div class="form-section">
+            <label for="algo-select">Algorithm</label>
+            <select id="algo-select">
+              <option value="FCFS">First-Come, First-Served</option>
+              <option value="SJN">Shortest Job Next</option>
+              <option value="RR">Round Robin</option>
+              <option value="NPP">Non-Preemptive Priority</option>
+              <option value="PP">Preemptive Priority</option>
+            </select>
+          </div>
+          <div class="form-section">
+            <label for="arrival-time">Arrival Times</label>
+            <input type="text" id="arrival-time" placeholder="e.g. 0 2 4 6 8" />
+          </div>
+          <div class="form-section">
+            <label for="burst-time">Burst Times</label>
+            <input type="text" id="burst-time" placeholder="e.g. 2 4 6 8 10" />
+          </div>
+          <div
+            id="time-quantum-fieldset"
+            style="display: none"
+            class="form-section"
+          >
+            <label for="time-quantum">Time Quantum</label>
+            <input
+              type="number"
+              id="time-quantum"
+              placeholder="e.g. 3"
+              min="1"
+              step="1"
+            />
+          </div>
+          <div
+            id="priorities-fieldset"
+            style="display: none"
+            class="form-section"
+          >
+            <label for="priorities">Priorities</label>
+            <input
+              type="text"
+              id="priorities"
+              placeholder="Lower # = higher priority"
+            />
+          </div>
+          <button type="submit">Solve</button>
+        </form>
+      </div>
+      <div class="output-section">
+        <div class="output-header">
+          <h1>Output</h1>
+          <span class="algo-value" title="Currently selected: Algo">Algo</span>
+        </div>
+        <p>Gantt chart and table will be shown here</p>
+        <div class="gantt-chart">
+          <h2>Gantt Chart</h2>
+          <div id="chart"></div>
+        </div>
+        <div class="table-wrapper">
+          <table class="styled-table">
+            <thead>
+              <tr class="header-cell">
+                <th>Job</th>
+                <th>Arrival Time</th>
+                <th>Burst Time</th>
+                <th>Finish Time</th>
+                <th>Turnaround Time</th>
+                <th>Waiting Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Job1</td>
+                <td>0</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>0</td>
+              </tr>
+
+              <tr>
+                <td colspan="4" style="text-align: right">Average</td>
+                <td>5</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
