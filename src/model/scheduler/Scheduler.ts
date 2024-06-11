@@ -3,7 +3,7 @@ import { Status } from "../process/Status";
 import { SchedulingStrategy } from "../algorithms/SchedulingStrategy";
 import { FCFS } from "../algorithms/FCFS";
 
-class Scheduler {
+export class Scheduler {
   private processes: Process[];
   private quantumTime: number;
   private elapsedTime: number;
@@ -14,7 +14,7 @@ class Scheduler {
     this.processes = processes;
     this.quantumTime = quantumTime;
     this.elapsedTime = 0;
-    this.live = true;
+    this.live = false;
     this.strategy = new FCFS();
   }
 
@@ -59,7 +59,7 @@ class Scheduler {
   }
 
   progress(): void {
-    this.strategy.run();
+    this.strategy.run(this);
   }
 
   addProcess(process: Process): void {
@@ -76,23 +76,36 @@ class Scheduler {
     return false;
   }
 
-  getAverageTurnaroundTime(): number {
+  getAverageTurnaroundTime(): string {
     let totalTurnaroundTime = 0;
 
     for (let i = 0; i < this.processes.length; i++) {
       totalTurnaroundTime += this.processes[i].getTurnaroundTime();
     }
 
-    return totalTurnaroundTime / this.processes.length;
+    return (totalTurnaroundTime / this.processes.length).toPrecision(4);
   }
 
-  getAverageWaitingTime(): number {
+  getAverageWaitingTime(): string {
     let totalWaitingTime = 0;
 
     for (let i = 0; i < this.processes.length; i++) {
       totalWaitingTime += this.processes[i].getWaitingTime();
     }
 
-    return totalWaitingTime / this.processes.length;
+    return (totalWaitingTime / this.processes.length).toPrecision(4);
+  }
+
+  incrementElapsedTime(duration: number = this.quantumTime): void {
+    this.elapsedTime += duration;
+  }
+
+  stopRunningProcess(): void {
+    for (let i = 0; i < this.processes.length; i++) {
+      if (this.processes[i].getStatus() === Status.RUNNING) {
+        this.processes[i].setStatus(Status.READY);
+        break;
+      }
+    }
   }
 }

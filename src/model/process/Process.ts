@@ -1,3 +1,4 @@
+import { Scheduler } from "../scheduler/Scheduler";
 import { Status } from "./Status";
 
 export class Process {
@@ -7,7 +8,7 @@ export class Process {
   private completionTime: number;
   private workingTime: number;
   private priority: number;
-  private status: Status = Status.NOT_ARRIVED;
+  private status: Status = Status.READY;
 
   constructor(
     processId: number,
@@ -78,5 +79,23 @@ export class Process {
 
   getWaitingTime(): number {
     return this.completionTime - this.arrivalTime - this.workingTime;
+  }
+
+  execute(scheduler: Scheduler): void {
+    if (this.burstTime >= scheduler.getQuantumTime()) {
+      this.burstTime -= scheduler.getQuantumTime();
+      scheduler.incrementElapsedTime();
+    } else {
+      this.burstTime = 0;
+      this.completionTime = scheduler.getElapsedTime();
+      this.status = Status.COMPLETED;
+      scheduler.incrementElapsedTime(this.burstTime);
+    }
+  }
+
+  print(): void {
+    console.log(
+      `Process ID: ${this.processId}, Burst Time: ${this.burstTime}, Arrival Time: ${this.arrivalTime}, Completion Time: ${this.completionTime}, Priority: ${this.priority}, Status: ${this.status}`
+    );
   }
 }
