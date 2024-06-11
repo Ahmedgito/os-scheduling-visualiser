@@ -14,8 +14,8 @@ export class Process {
     processId: number,
     burstTime: number,
     arrivalTime: number = 0,
-    completionTime: number = 0,
-    priority: number = 1
+    priority: number = 1,
+    completionTime: number = 0
   ) {
     this.processId = processId;
     this.burstTime = burstTime;
@@ -82,14 +82,14 @@ export class Process {
   }
 
   execute(scheduler: Scheduler): void {
-    if (this.burstTime >= scheduler.getQuantumTime()) {
+    if (this.burstTime > scheduler.getQuantumTime()) {
       this.burstTime -= scheduler.getQuantumTime();
       scheduler.incrementElapsedTime();
     } else {
+      scheduler.incrementElapsedTime(this.burstTime);
       this.burstTime = 0;
       this.completionTime = scheduler.getElapsedTime();
       this.status = Status.COMPLETED;
-      scheduler.incrementElapsedTime(this.burstTime);
     }
   }
 

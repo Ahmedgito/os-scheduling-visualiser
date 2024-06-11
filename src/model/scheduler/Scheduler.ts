@@ -10,7 +10,7 @@ export class Scheduler {
   private live: boolean;
   private strategy: SchedulingStrategy;
 
-  constructor(processes: Process[] = [], quantumTime: number) {
+  constructor(processes: Process[] = [], quantumTime: number = 1) {
     this.processes = processes;
     this.quantumTime = quantumTime;
     this.elapsedTime = 0;

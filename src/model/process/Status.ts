@@ -2,5 +2,4 @@ export enum Status {
   RUNNING = "RUNNING",
   READY = "READY",
   COMPLETED = "COMPLETED",
-  NOT_ARRIVED = "NOT_ARRIVED",
 }
