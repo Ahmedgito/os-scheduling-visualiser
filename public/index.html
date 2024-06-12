@@ -22,7 +22,8 @@
             <label for="algo-select">Algorithm</label>
             <select id="algo-select">
               <option value="FCFS">First-Come, First-Served</option>
-              <option value="SJN">Shortest Job Next</option>
+              <option value="PSJF">Preemptive Shortest Job First</option>
+              <option value="NPSJF">Non-Preemptive Shortest Job First</option>
               <option value="RR">Round Robin</option>
               <option value="NPP">Non-Preemptive Priority</option>
               <option value="PP">Preemptive Priority</option>
@@ -36,25 +37,17 @@
             <label for="burst-time">Burst Times</label>
             <input type="text" id="burst-time" placeholder="e.g. 2 4 6 8 10" />
           </div>
-          <div
-            id="time-quantum-fieldset"
-            style="display: none"
-            class="form-section"
-          >
+          <div id="time-quantum-div" style="display: none" class="form-section">
             <label for="time-quantum">Time Quantum</label>
             <input
               type="number"
-              id="time-quantum"
+              id="quantum-time"
               placeholder="e.g. 3"
               min="1"
               step="1"
             />
           </div>
-          <div
-            id="priorities-fieldset"
-            style="display: none"
-            class="form-section"
-          >
+          <div id="priorities-div" style="display: none" class="form-section">
             <label for="priorities">Priorities</label>
             <input
               type="text"
@@ -62,47 +55,39 @@
               placeholder="Lower # = higher priority"
             />
           </div>
-          <button type="submit">Solve</button>
+          <button type="submit" id="solve-btn">Solve</button>
         </form>
       </div>
       <div class="output-section">
         <div class="output-header">
           <h1>Output</h1>
-          <span class="algo-value" title="Currently selected: Algo">Algo</span>
+          <span
+            id="algo-value"
+            title="Currently selected: Algo"
+            style="display: none"
+            >Algo</span
+          >
         </div>
-        <p>Gantt chart and table will be shown here</p>
-        <div class="gantt-chart">
+        <p id="output-desc">Gantt chart and table will be shown here</p>
+        <div id="gantt-chart-div" style="display: none">
           <h2>Gantt Chart</h2>
           <div id="chart"></div>
         </div>
-        <div class="table-wrapper">
-          <table class="styled-table">
+        <div id="table-div" style="display: none">
+          <table class="styled-table" id="process-table">
             <thead>
               <tr class="header-cell">
                 <th>Job</th>
                 <th>Arrival Time</th>
                 <th>Burst Time</th>
+                <th>Progress</th>
+                <th>Status</th>
                 <th>Finish Time</th>
                 <th>Turnaround Time</th>
                 <th>Waiting Time</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Job1</td>
-                <td>0</td>
-                <td>5</td>
-                <td>5</td>
-                <td>5</td>
-                <td>0</td>
-              </tr>
-
-              <tr>
-                <td colspan="4" style="text-align: right">Average</td>
-                <td>5</td>
-                <td>0</td>
-              </tr>
-            </tbody>
+            <tbody id="process-table-body"></tbody>
           </table>
         </div>
       </div>

@@ -73,6 +73,13 @@ export class Process {
     return this.status;
   }
 
+  getProgress(): string {
+    return (
+      ((this.workingTime - this.burstTime) / this.workingTime) *
+      100
+    ).toFixed(0);
+  }
+
   getTurnaroundTime(): number {
     return this.completionTime - this.arrivalTime;
   }

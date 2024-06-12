@@ -35,14 +35,14 @@ body {
   align-items: center;
 }
 
-.algo-value {
+#algo-value {
   background-color: #e8fff7;
   font-weight: 500;
   border-radius: 5px;
   padding: 8px 10px;
 }
 
-.gantt-chart {
+#gantt-chart-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -90,6 +90,10 @@ body {
   text-align: left;
   padding: 15px;
   border: 1px solid #e1e1e1;
+}
+#avg-row {
+  position: relative;
+  bottom: 0;
 }
 
 .header-cell {

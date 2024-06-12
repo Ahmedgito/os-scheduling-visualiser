@@ -1,4 +1,3 @@
-import { GraphController } from "./controller/outputController/GraphController";
+import { InputController } from "./controller/inputController/InputController";
 
-const graphController = new GraphController();
-graphController.renderChart();
+const inputController = new InputController();

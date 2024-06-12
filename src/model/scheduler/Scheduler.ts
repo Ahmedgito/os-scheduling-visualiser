@@ -58,8 +58,8 @@ export class Scheduler {
     return this.strategy;
   }
 
-  progress(): void {
-    this.strategy.run(this);
+  progress(): Process | null {
+    return this.strategy.run(this);
   }
 
   addProcess(process: Process): void {
@@ -83,7 +83,7 @@ export class Scheduler {
       totalTurnaroundTime += this.processes[i].getTurnaroundTime();
     }
 
-    return (totalTurnaroundTime / this.processes.length).toPrecision(4);
+    return (totalTurnaroundTime / this.processes.length).toFixed(2);
   }
 
   getAverageWaitingTime(): string {
@@ -93,7 +93,7 @@ export class Scheduler {
       totalWaitingTime += this.processes[i].getWaitingTime();
     }
 
-    return (totalWaitingTime / this.processes.length).toPrecision(4);
+    return (totalWaitingTime / this.processes.length).toFixed(2);
   }
 
   incrementElapsedTime(duration: number = this.quantumTime): void {
