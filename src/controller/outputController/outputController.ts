@@ -17,6 +17,7 @@ export class OutputController {
   private chartDiv: HTMLDivElement;
   private graphController: GraphController;
   private scheduler: Scheduler;
+
   constructor() {
     this.selectedAlgoSpan = document.querySelector(
       "#algo-value"
@@ -33,10 +34,18 @@ export class OutputController {
     ) as HTMLDivElement;
     this.graphController = new GraphController();
   }
-  public start(processes: Process[], algo: string, quantum: number) {
+  public solve(processes: Process[], algo: string, quantum: number) {
+    this.clearOutput();
     this.initScheduler(processes, algo, quantum);
     this.initProcessTable(processes);
-    this.displayElements(algo);
+    this.displayUIElements(algo);
+    this.runScheduler(quantum);
+  }
+
+  private runScheduler(quantum: number): void {
+    let curSelectedProcess: Process | null = null;
+    let prevSelectedProcess: Process | null = null;
+
     let intervalId = setInterval(() => {
       if (!this.scheduler.hasProcess()) {
         let avgTurnaround: string = this.scheduler.getAverageTurnaroundTime();
@@ -45,13 +54,25 @@ export class OutputController {
         clearInterval(intervalId);
       }
 
-      let selectedProcess: Process | null = this.scheduler.progress();
-      if (selectedProcess === null) return;
-      this.updateProcessRow(selectedProcess);
+      prevSelectedProcess = curSelectedProcess;
+      curSelectedProcess = this.scheduler.progress();
+
+      if (curSelectedProcess === null) return;
+
+      // update table
+      this.updateProcessRow(prevSelectedProcess);
+      this.updateProcessRow(curSelectedProcess);
+
+      // update graph
+      this.graphController.addProcess(
+        curSelectedProcess,
+        this.scheduler.getElapsedTime() - quantum,
+        quantum
+      );
     }, quantum * 1000);
   }
 
-  private displayElements(algo: string): void {
+  private displayUIElements(algo: string): void {
     this.selectedAlgoSpan.innerHTML = algo;
     this.selectedAlgoSpan.style.display = "block";
     this.outputDescription.style.display = "none";
@@ -88,7 +109,6 @@ export class OutputController {
   }
 
   private initProcessTable(processes: Process[]): void {
-    this.clearTableRows();
     processes.forEach((process: Process) => {
       let row: HTMLTableRowElement = this.processTableBody.insertRow();
       let idCell: HTMLTableCellElement = row.insertCell();
@@ -112,7 +132,9 @@ export class OutputController {
     });
   }
 
-  private updateProcessRow(process: Process): void {
+  private updateProcessRow(process: Process | null): void {
+    if (process === null) return;
+
     let processRow: HTMLTableRowElement | null =
       this.processTableBody.querySelector(`#process-${process.getProcessId()}`);
 
@@ -170,5 +192,9 @@ export class OutputController {
       avgRow.remove();
     }
   }
-  private clearChart(): void {}
+
+  private clearOutput(): void {
+    this.clearTableRows();
+    this.graphController.clearChart();
+  }
 }

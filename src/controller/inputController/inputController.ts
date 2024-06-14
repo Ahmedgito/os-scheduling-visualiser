@@ -64,11 +64,11 @@ export class InputController {
   private onSolveButtonClick(e: Event): void {
     e.preventDefault();
     if (this.validateInputs()) {
-      alert("Inputs are valid");
       const processes: Process[] = this.getProcecess();
       const selectedAlgo: string = this.getAlgoSelectValue();
-      const quantum: number = this.getQuantumInputValue() || 1;
-      this.outputController.start(processes, selectedAlgo, quantum);
+      const quantum: number =
+        selectedAlgo === "RR" ? this.getQuantumInputValue() : 1;
+      this.outputController.solve(processes, selectedAlgo, quantum);
     }
   }
 

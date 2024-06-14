@@ -27,6 +27,7 @@ body {
   border-radius: 15px;
   min-width: 230px;
   max-width: 335px;
+  max-height: 500px;
 }
 
 .output-header {

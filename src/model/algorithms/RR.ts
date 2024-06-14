@@ -18,9 +18,10 @@ export class RR implements SchedulingStrategy {
       ) {
         scheduler.getProcesses()[i].setStatus(Status.RUNNING);
         scheduler.getProcesses()[i].execute(scheduler);
+        let selectedProcess = scheduler.getProcesses()[i];
         // move the process to the end of the queue
         scheduler.getProcesses().push(scheduler.getProcesses().splice(i, 1)[0]);
-        return scheduler.getProcesses()[i];
+        return selectedProcess;
       }
     }
 

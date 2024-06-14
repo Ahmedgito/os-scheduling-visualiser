@@ -23,7 +23,7 @@ export class NPP implements SchedulingStrategy {
             scheduler.getElapsedTime()
         ) {
           scheduler.getProcesses()[i].setStatus(Status.RUNNING);
-          return scheduler.getProcesses()[i];
+          return null;
         }
       }
     }
