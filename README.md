@@ -1,5 +1,9 @@
-# CPU-Scheduling-Simulator
-A CPU Scheduling Simulator that supports FCFS, SJF, Priority, and Round Robin algorithms, featuring a user-friendly GUI . It includes a live Gantt Chart, displays average waiting and turnaround times, and provides real-time updates on remaining burst times for each process
+# CPU Scheduling Simulator
+
+<div align="center">
+  <img src="https://github.com/Abdulrahman295/CPU-Scheduling-Simulator/assets/89452130/b5e50b7f-7eec-4941-87cb-7acda1725265" alt="CPU Scheduling Simulator GIF">
+  <p>A CPU Scheduling Simulator that supports FCFS, SJF, Priority, and Round Robin algorithms, featuring a user-friendly GUI. It includes a live Gantt Chart, displays average waiting and turnaround times, and provides real-time updates on remaining burst times for each process.</p>
+</div>
 
 ## Features
 - Live Scheduling Simulation where each time unit is mapped to 1 second in real time.
